@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-cloudflare-production
+  namespace: default
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: murilo.bauer90@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-cloudflare-production
+    solvers:
+    - dns01:
+        cloudflare:
+          email: murilo.bauer90@gmail.com
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
+#      selector:
+#        dnsZones:
+#        - '*.autofacildespachante.com'
+#        - autofacildespachante.com

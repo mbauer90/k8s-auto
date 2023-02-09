@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
+spec:
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - autofacildespachante.com
+        - 'site1.autofacildespachante.com'
+        - 'site2.autofacildespachante.com'
+  defaultBackend:
+    service:
+      name: site1-service
+      port:
+        number: 80
+  rules:
+  - host: "site1.autofacildespachante.com"
+    http:
+      paths:
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: site1-service
+            port:
+              number: 80

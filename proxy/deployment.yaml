@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site1
+  labels:
+    app: site1
+spec:
+  selector:
+    matchLabels:
+      app: site1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "site1"
+    spec:
+      containers:
+        - name: site1
+          image: paulbouwer/hello-kubernetes:1.5
+          ports:
+          - containerPort: 8080
+          resources:
+            requests: 
+              cpu: "0.02"
+              memory: 20Mi
+            limits:
+              cpu: "0.02"
+              memory: 20Mi
