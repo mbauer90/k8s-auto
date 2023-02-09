@@ -38,8 +38,8 @@ spec:
   - host: "auth.autofacildespachante.com"
     http:
       paths:
-      - path: "/"
-        pathType: Prefix
+      - path: "/*"
+        pathType: ImplementationSpecific
         backend:
           service:
             name: keycloak-service

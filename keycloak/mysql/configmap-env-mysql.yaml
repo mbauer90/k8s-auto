@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-env
+data:
+  MYSQL_ROOT_PASSWORD: keycloak
+  MYSQL_DATABASE: keycloak
+  MYSQL_USER: keycloak
+  MYSQL_PASSWORD: keycloak
+
+#        env:
+#          # Use secret in real usage
+#        - name: MYSQL_ROOT_PASSWORD
+#          value: keycloak
+#        - name: MYSQL_DATABASE
+#          value: keycloak
+#        - name: MYSQL_USER 
+#          value: keycloak
+#        - name: MYSQL_PASSWORD 
+#          value: keycloak

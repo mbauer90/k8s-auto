@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: region1storageclass
+  annotations:
+    components.gke.io/layer: addon
+  labels:
+    addonmanager.kubernetes.io/mode: EnsureExists  
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: pd-standard
+provisioner: kubernetes.io/gce-pd
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowedTopologies:
+- matchLabelExpressions:
+  - key: failure-domain.beta.kubernetes.io/zone
+    values:
+    - us-central1-b
