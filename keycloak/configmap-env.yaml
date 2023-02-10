@@ -7,7 +7,8 @@ data:
   KEYCLOAK_ADMIN_PASSWORD: "Fernando10"
   KC_PROXY: "edge"
   DB_VENDOR: MYSQL
-  DB_ADDR: mysql-service
+  DB_ADDR: key-mysql-svc
+  DB_PORT: '3306'
   DB_DATABASE: keycloak
   DB_USER: keycloak
   DB_PASSWORD: keycloak

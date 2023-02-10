@@ -18,9 +18,12 @@ spec:
     spec:
       containers:
       - name: keycloak
-        image: quay.io/keycloak/keycloak:20.0.3
+#        image: quay.io/keycloak/keycloak:20.0.3
+#        image: quay.io/keycloak/keycloak:10.0.1
+        image: bitnami/keycloak
 #        args: ["start"]
-        args: ["start-dev"]      
+#        args: ["start-dev"]
+#        build --db=mysql  
         envFrom:
           - configMapRef:
               name: keycloak-env

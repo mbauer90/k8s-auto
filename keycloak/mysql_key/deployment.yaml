@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: key-mysql
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: key-mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: key-mysql
     spec:
       containers:
       - image: mysql:8.0
-        name: mysql
+        name: key-mysql
         envFrom:
           - configMapRef:
-              name: mysql-env
+              name: key-mysql-env
         ports:
         - containerPort: 3306
-          name: mysql-service
+          name: key-mysql-svc
         resources:
           requests: 
             cpu: "500m"
@@ -30,9 +30,9 @@ spec:
             cpu: "500m"
             memory: "512Mi"          
         volumeMounts:
-        - name: mysql-persistent-storage
+        - name: key-mysql-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-persistent-storage
+      - name: key-mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: key-mysql-pv-claim

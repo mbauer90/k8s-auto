@@ -10,3 +10,6 @@ kubectl exec --stdin --tty pod/pod_id -c mysql -- /bin/bash
 
 COMANDOS UTEIS:
 kubectl top nodes
+
+Links úteis:
+https://number1.co.za/setting-up-keycloak-on-kubernetes/

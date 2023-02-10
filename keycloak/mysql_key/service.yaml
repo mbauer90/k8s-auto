@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: key-mysql-svc
 spec:
   ports:
-  - name: mysql-service
+  - name: key-mysql-svc
     port: 3306
     targetPort: 3306
   selector:
-    app: mysql
+    app: key-mysql
   #clusterIP: None
   type: ClusterIP

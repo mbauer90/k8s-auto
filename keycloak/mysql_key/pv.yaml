@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mysql-pv-volume
+  name: key-mysql-pv-volume
 spec:
 #  storageClassName: storageclasse-gce-provision
   capacity:

@@ -42,7 +42,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: wordpress-svc
+            name: site1-service
             port:
               number: 80
   - host: "auth.autofacildespachante.com"
