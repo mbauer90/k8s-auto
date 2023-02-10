@@ -1,38 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: wp-mysql
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: wp-mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: wp-mysql
     spec:
       containers:
-      - image: mysql:5.6
-        name: mysql
+      - image: mysql:8.0
+        name: wp-mysql
         envFrom:
           - configMapRef:
-              name: mysql-env
+              name: wp-mysql-env
         ports:
         - containerPort: 3306
-          name: mysql-service
+          name: wp-mysql-svc
         resources:
           requests: 
-            cpu: "0.02"
-            memory: 20Mi
+            cpu: "500m"
+            memory: "512Mi"
           limits:
-            cpu: "0.02"
-            memory: 20Mi          
+            cpu: "500m"
+            memory: "512Mi"          
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: wp-mysql-pv-claim

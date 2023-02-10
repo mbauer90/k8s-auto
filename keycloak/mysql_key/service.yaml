@@ -4,7 +4,10 @@ metadata:
   name: mysql-service
 spec:
   ports:
-  - port: 3306
+  - name: mysql-service
+    port: 3306
+    targetPort: 3306
   selector:
     app: mysql
-  clusterIP: None
+  #clusterIP: None
+  type: ClusterIP

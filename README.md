@@ -7,3 +7,6 @@ kubectl annotate ingress web-ingress cert-manager.io/issuer=letsencrypt-cloudfla
 
 Executar mysql:
 kubectl exec --stdin --tty pod/pod_id -c mysql -- /bin/bash
+
+COMANDOS UTEIS:
+kubectl top nodes

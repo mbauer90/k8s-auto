@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keycloak
+  annotations:
+    cloud.google.com/neg: '{"ingress": false}'  
   labels:
     app: keycloak
 spec:
@@ -17,8 +19,8 @@ spec:
       containers:
       - name: keycloak
         image: quay.io/keycloak/keycloak:20.0.3
-        args: ["start"]
-#        args: ["start-dev"]      
+#        args: ["start"]
+        args: ["start-dev"]      
         envFrom:
           - configMapRef:
               name: keycloak-env
@@ -33,8 +35,8 @@ spec:
 #            port: 8080          
         resources:
           requests: 
-            cpu: "0.02"
-            memory: 20Mi
+            cpu: "500m"
+            memory: "512Mi"
           limits:
-            cpu: "0.02"
-            memory: 20Mi
+            cpu: "500m"
+            memory: "512Mi" 

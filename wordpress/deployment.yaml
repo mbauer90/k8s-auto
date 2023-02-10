@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+#      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - image: wordpress:5.6.0-php7.4
+        name: wordpress
+        env: 
+          - name: WORDPRESS_DB_HOST
+            value: wp-mysql-svc
+          - name: WORDPRESS_DB_PASSWORD
+            value: "wordpress@123"
+        ports:
+        - containerPort: 80
+          name: wordpress
+        resources:
+          requests: 
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"     
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim

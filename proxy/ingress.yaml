@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: web-ingress
   annotations:
+#    cloud.google.com/neg: '{"ingress": false}'
     kubernetes.io/ingress.class: gce
     kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
-    #kubernetes.io/force-ssl-redirect: "true"
-    kubernetes.io/ingress.allow-http: "false"
+#    kubernetes.io/ingress.allow-http: "true"
     networking.gke.io/v1beta1.FrontendConfig: ssl-redirect
     cert-manager.io/issuer: "letsencrypt-cloudflare-production"
 spec:
@@ -35,6 +35,16 @@ spec:
             name: site1-service
             port:
               number: 80
+  - host: "site2.autofacildespachante.com"
+    http:
+      paths:
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: wordpress-svc
+            port:
+              number: 80
   - host: "auth.autofacildespachante.com"
     http:
       paths:
@@ -44,4 +54,4 @@ spec:
           service:
             name: keycloak-service
             port:
-              number: 8080
+              number: 8080              

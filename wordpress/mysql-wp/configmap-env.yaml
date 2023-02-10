@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wp-mysql-env
+data:
+  MYSQL_ROOT_PASSWORD: wordpress@123
+  MYSQL_DATABASE: wordpress
+  MYSQL_USER: wordpress
+  MYSQL_PASSWORD: wordpress@123
+
+#        env:
+#          # Use secret in real usage
+#        - name: MYSQL_ROOT_PASSWORD
+#          value: keycloak
+#        - name: MYSQL_DATABASE
+#          value: keycloak
+#        - name: MYSQL_USER 
+#          value: keycloak
+#        - name: MYSQL_PASSWORD 
+#          value: keycloak
