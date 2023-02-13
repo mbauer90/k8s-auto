@@ -42,9 +42,9 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: site1-service
+            name: payf-svc
             port:
-              number: 80             
+              number: 8082             
   - host: "auth.autofacildespachante.com"
     http:
       paths:

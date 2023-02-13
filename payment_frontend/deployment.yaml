@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laravel-backend
+  name: pay-frontend
   annotations:
     cloud.google.com/neg: '{"ingress": false}'
   labels:
-    app: laravel-backend
+    app: pay-frontend
 spec:
   selector:
     matchLabels:
-      app: laravel-backend
+      app: pay-frontend
   replicas: 1
   template:
     metadata:
       labels:
-        app: "laravel-backend"
+        app: "pay-frontend"
     spec:
       containers:
-        - name: laravel-backend
-          image: laravelsail/php81-composer:latest
+        - name: pay-frontend
+          image: murilobauer90/app-payment:latest
           ports:
-          - containerPort: 8082
+          - containerPort: 80
           resources:
             requests: 
               cpu: "0.08"

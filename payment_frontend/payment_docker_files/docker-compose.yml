@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app-payment:
+    build: .
+    container_name: murilobauer90/app-payment:latest
+    working_dir: /home/node/app
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - autofacil
+
+networks:
+  autofacil:
+    external: true

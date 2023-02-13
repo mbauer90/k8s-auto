@@ -1,0 +1,85 @@
+<c-col [xs]="12" [offset]="3" *ngIf="!car.id">
+  <form
+    [gutter]="3"
+    novalidate
+    cForm cRow
+    class="needs-validation"
+  >
+    <c-col [xs]="12">
+      <c-col [md]="4">
+        <label cLabel for="validationCustom01">Placa do veículo</label>
+        <input cFormControl id="validationCustom01" required type="text" placeholder="exemplo: AAA-1010 ou AAA0A00"/>
+        <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+      </c-col>
+    </c-col>
+    <c-col [xs]="12">
+      <c-col [md]="4">
+        <label cLabel for="validationCustomUsername">Seu melhor e-mail</label>
+        <input cFormControl id="validationCustomUsername" required type="email"/>
+      </c-col>
+    </c-col>
+
+    <c-col [xs]="12">
+      <c-form-check>
+        <input cFormCheckInput id="invalidCheck" name="invalidCheck" required type="checkbox"/>
+        <label cFormCheckLabel for="invalidCheck">Agree to terms and conditions</label>
+      </c-form-check>
+      <c-form-feedback [valid]="false">You must agree before submitting.</c-form-feedback>
+    </c-col>
+    <c-col [xs]="12">
+      <button cButton class="me-1" color="primary" type="button" (click)="search()">
+        Consultar
+      </button>
+    </c-col>
+  </form>
+</c-col>
+
+<div class="row" *ngIf="car.id && checkout==false">
+  <label cLabel for="validationCustom01">Placa: {{car.placa}}</label>
+
+  <div class="col-12 col-md-6" >
+    <div class="row">
+      <div class="col-12">
+
+        <div class="card" *ngFor="let debt of car.debts" (click)="selectDebt(debt)">
+          <div class="card-body" >
+            <input type="checkbox" class="px-2"  [checked]="isDebtSelected(debt)">
+            <span class="px-5">{{debt.name}}</span>
+            <span class="float-end">R$ {{debt.value | number: '0.2-2'}}</span>
+          </div>
+        </div>
+
+        <span>Total: {{total}}</span>
+
+      </div>
+
+      <div class="col-12 text-center" *ngIf="installmentSelected.id">
+        <button type="button" class="btn btn-lg btn-info btn-min" (click)="checkout=true"> Pagar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6" *ngIf="installments.length > 0">
+    <div class="row">
+      <div class="col-12 col-lg-6 col-xl-4" *ngFor="let installment of installments">
+        <div
+          [ngClass]="[this.installmentSelected.id == installment.id ? 'btn-success-active' : '' ]"
+          class="card text-center btn btn-success"
+          (click)="selectInstallment(installment)"
+        >
+          <div class="card-body btn-light" style="height: 145px">
+            <h2>{{installment.name}}</h2>
+            R${{installment.value | number : '1.2-2'}}
+            <p>total: R${{installment.total | number : '1.2-2'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-checkout [total]="500" *ngIf="checkout"></app-checkout>
+
+
+

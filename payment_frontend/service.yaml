@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payf-svc
+spec:
+  selector:
+    app: pay-frontend
+  type: NodePort
+  ports:
+  - name: payf-svc
+    port: 8082
+    targetPort: 80
+    protocol: TCP
