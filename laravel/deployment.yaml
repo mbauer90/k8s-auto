@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pag-backend
+  name: laravel-backend
   annotations:
     cloud.google.com/neg: '{"ingress": false}'
   labels:
-    app: pag-backend
+    app: laravel-backend
 spec:
   selector:
     matchLabels:
-      app: pag-backend
+      app: laravel-backend
   replicas: 1
   template:
     metadata:
       labels:
-        app: "pag-backend"
+        app: "laravel-backend"
     spec:
       containers:
-        - name: pag-backend
+        - name: laravel-backend
           image: laravelsail/php81-composer:latest
           ports:
-          - containerPort: 80
+          - containerPort: 8082
           resources:
             requests: 
               cpu: "0.08"
