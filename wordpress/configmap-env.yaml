@@ -7,3 +7,5 @@ data:
   WORDPRESS_DB_NAME: wordpress
   WORDPRESS_DB_USER: wordpress
   WORDPRESS_DB_PASSWORD: 'wordpress@123'
+  FORCE_SSL_ADMIN: 'true'
+  WP_DEBUG: '1'

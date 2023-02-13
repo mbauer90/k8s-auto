@@ -12,12 +12,12 @@ metadata:
 spec:
   tls:
     - secretName: cert-cloudflare
-#      hosts:
+      hosts:
 #        - "*.autofacildespachante.com"
 #        - autofacildespachante.com
 #        - www.autofacildespachante.com
 #        - site1.autofacildespachante.com
-#        - site2.autofacildespachante.com
+#        - pagamentos.autofacildespachante.com
 #        - auth.autofacildespachante.com
   defaultBackend:
     service:
@@ -35,16 +35,16 @@ spec:
             name: site1-service
             port:
               number: 80
-  - host: "site2.autofacildespachante.com"
+  - host: "pagamentos.autofacildespachante.com"
     http:
       paths:
       - path: "/*"
         pathType: ImplementationSpecific
         backend:
           service:
-            name: site1-service
+            name: wordpress-svc
             port:
-              number: 80
+              number: 8081              
   - host: "auth.autofacildespachante.com"
     http:
       paths:
@@ -54,4 +54,4 @@ spec:
           service:
             name: keycloak-service
             port:
-              number: 8080              
+              number: 8080

@@ -27,6 +27,12 @@ spec:
         ports:
         - containerPort: 80
           name: wordpress
+        readinessProbe:
+          httpGet:
+            path: /wp-admin/images/wordpress-logo.svg
+            port: 80 
+          initialDelaySeconds: 5
+          periodSeconds: 10      
         resources:
           requests: 
             cpu: "500m"

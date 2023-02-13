@@ -20,10 +20,11 @@ spec:
       - name: keycloak
 #        image: quay.io/keycloak/keycloak:20.0.3
 #        image: quay.io/keycloak/keycloak:10.0.1
-        image: bitnami/keycloak
+#        image: bitnami/keycloak
+        image: quay.io/keycloak/keycloak:legacy
 #        args: ["start"]
 #        args: ["start-dev"]
-#        build --db=mysql  
+#        args: ["build --db=mysql]
         envFrom:
           - configMapRef:
               name: keycloak-env
@@ -32,10 +33,10 @@ spec:
         ports:
         - name: http
           containerPort: 8080
-#        readinessProbe:
-#          httpGet:
-#            path: /realms/master
-#            port: 8080          
+        readinessProbe:
+          httpGet:
+            path: /auth/
+            port: 8080          
         resources:
           requests: 
             cpu: "500m"
