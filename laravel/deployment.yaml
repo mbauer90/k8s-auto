@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pag-backend
+  annotations:
+    cloud.google.com/neg: '{"ingress": false}'
+  labels:
+    app: pag-backend
+spec:
+  selector:
+    matchLabels:
+      app: pag-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "pag-backend"
+    spec:
+      containers:
+        - name: pag-backend
+          image: laravelsail/php81-composer:latest
+          ports:
+          - containerPort: 80
+          resources:
+            requests: 
+              cpu: "0.08"
+              memory: 100Mi
+            limits:
+              cpu: "0.08"
+              memory: 100Mi        
