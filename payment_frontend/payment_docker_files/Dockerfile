@@ -1,13 +1,8 @@
-FROM node:19-slim
+FROM nginx:alpine
 
-USER root
+#USER root
+COPY ./dist/ /usr/share/nginx/html
 
-RUN npm install -g @angular/cli@15.0.4
+WORKDIR /usr/share/nginx/html/
 
-USER node
-
-WORKDIR /home/node/app
-COPY . /home/node/app
-
-CMD ["tail", "-f", "/dev/null"]
-#CMD ["sh", "-c", "npm install && npm run start"]
+CMD ["nginx", "-g", "daemon off;"]

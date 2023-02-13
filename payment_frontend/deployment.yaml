@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pay-frontend
-  annotations:
-    cloud.google.com/neg: '{"ingress": false}'
+#  annotations:
+#    cloud.google.com/neg: '{"ingress": true}'
   labels:
     app: pay-frontend
 spec:
@@ -19,6 +19,7 @@ spec:
       containers:
         - name: pay-frontend
           image: murilobauer90/app-payment:latest
+#          image: nginx:latest
           ports:
           - containerPort: 80
           resources:
