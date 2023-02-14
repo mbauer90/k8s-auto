@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pay-backend
-#  annotations:
-#    cloud.google.com/neg: '{"ingress": true}'
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
   labels:
     app: pay-backend
 spec:

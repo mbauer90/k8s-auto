@@ -1,25 +1,38 @@
-FROM php:8.2-fpm
+# Use a versioned PHP base image
+FROM php:8.2-fpm-alpine
 
-RUN apt-get update && apt-get install -y \
-        libzip-dev \
-        zip \
-        unzip \
-        && docker-php-ext-configure zip \
-        && docker-php-ext-install zip pdo_mysql
+# Install required dependencies
+RUN apk update && apk add --no-cache \
+    build-base \
+    libzip-dev \
+    zip \
+    zlib-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
 
-RUN apt-get update && apt-get install -y nginx
+# Install required PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo_mysql zip
 
+# Install composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy Laravel files
 COPY ./docker/ /var/www/html
 
-#RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-#RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Install Laravel dependencies
+RUN composer install --no-interaction --no-dev --prefer-dist
 
-RUN chown -R www-data:www-data /var/www/html/
-RUN chmod -R 775 /var/www/html/
+# Set working directory
+WORKDIR /var/www/html
 
-COPY docker/nginx.conf /etc/nginx/sites-available/default
-#RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-#EXPOSE 80
+# Expose the port
+#EXPOSE 9000
 
-CMD service nginx start && php-fpm
+# Start the server
+CMD ["php-fpm"]
