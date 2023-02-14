@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pay-backend
+#  annotations:
+#    cloud.google.com/neg: '{"ingress": true}'
+  labels:
+    app: pay-backend
+spec:
+  selector:
+    matchLabels:
+      app: pay-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "pay-backend"
+    spec:
+      containers:
+        - name: pay-backend
+          image: murilobauer90/pay-laravel:latest
+          ports:
+          - containerPort: 80
+          resources:
+            requests: 
+              cpu: "0.08"
+              memory: 100Mi
+            limits:
+              cpu: "0.08"
+              memory: 100Mi        
