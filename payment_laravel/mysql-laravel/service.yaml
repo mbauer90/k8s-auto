@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lrv-mysql-svc
+spec:
+  ports:
+  - name: lrv-mysql-svc
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: lrv-mysql
+  #clusterIP: None
+  type: ClusterIP

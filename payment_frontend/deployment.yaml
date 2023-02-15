@@ -19,7 +19,6 @@ spec:
       containers:
         - name: pay-frontend
           image: murilobauer90/app-payment:latest
-#          image: nginx:latest
           ports:
           - containerPort: 80
           resources:

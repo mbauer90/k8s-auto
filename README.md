@@ -11,6 +11,11 @@ kubectl exec --stdin --tty pod/pod_id -c mysql -- /bin/bash
 COMANDOS UTEIS:
 kubectl top nodes
 
+LARAVEL:
+php artisan config:clear
+php artisan cache:clear
+php artisan migrate
+
 Links úteis:
 https://number1.co.za/setting-up-keycloak-on-kubernetes/
 https://stackoverflow.com/questions/74014422/gke-ingress-is-not-working-with-wordpress-deployment

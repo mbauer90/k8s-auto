@@ -44,7 +44,17 @@ spec:
           service:
             name: payf-svc
             port:
-              number: 8082             
+              number: 8082      
+  - host: "laravel.autofacildespachante.com"
+    http:
+      paths:
+      - path: "/*"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: paybck-svc
+            port:
+              number: 8083
   - host: "auth.autofacildespachante.com"
     http:
       paths:

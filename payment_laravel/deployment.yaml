@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pay-backend
   annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/neg: '{"ingress": false}'
   labels:
     app: pay-backend
 spec:
@@ -18,7 +18,10 @@ spec:
     spec:
       containers:
         - name: pay-backend
-          image: murilobauer90/pay-laravel:latest
+          image: fernandoomarcelino/app:latest
+          envFrom:
+            - configMapRef:
+                name: lrv-env          
           ports:
           - containerPort: 80
           resources:
