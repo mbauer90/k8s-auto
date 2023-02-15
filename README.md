@@ -20,3 +20,4 @@ Links úteis:
 https://number1.co.za/setting-up-keycloak-on-kubernetes/
 https://stackoverflow.com/questions/74014422/gke-ingress-is-not-working-with-wordpress-deployment
 https://www.digitalocean.com/community/tutorials/how-to-deploy-laravel-7-and-mysql-on-kubernetes-using-helm
+https://madewithlove.com/blog/software-engineering/the-easiest-production-ready-image-to-run-your-laravel-application/
