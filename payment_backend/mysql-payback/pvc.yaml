@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: lrv-mysql-pv-claim
+  name: pay-mysql-pv-claim
   namespace: default
 spec:
   accessModes:

@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lrv-mysql
+  name: pay-mysql
 spec:
   selector:
     matchLabels:
-      app: lrv-mysql
+      app: pay-mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: lrv-mysql
+        app: pay-mysql
     spec:
       containers:
       - image: mysql:8.0
-        name: lrv-mysql
+        name: pay-mysql
         envFrom:
           - configMapRef:
-              name: lrv-mysql-env
+              name: pay-mysql-env
         ports:
         - containerPort: 3306
-          name: lrv-mysql-svc
+          name: pay-mysql-svc
         resources:
           requests: 
             cpu: "500m"
@@ -35,4 +35,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: lrv-mysql-pv-claim
+          claimName: pay-mysql-pv-claim

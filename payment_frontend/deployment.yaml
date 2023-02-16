@@ -11,6 +11,8 @@ spec:
     matchLabels:
       app: pay-frontend
   replicas: 1
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -18,13 +20,14 @@ spec:
     spec:
       containers:
         - name: pay-frontend
-          image: murilobauer90/app-payment:latest
+          image: gcr.io/production-376800/payment_app_gpc:latest
+          imagePullPolicy: Always
           ports:
           - containerPort: 80
           resources:
             requests: 
-              cpu: "0.08"
+              cpu: "800m"
               memory: 100Mi
             limits:
-              cpu: "0.08"
-              memory: 100Mi        
+              cpu: "800m"
+              memory: 200Mi

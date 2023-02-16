@@ -11,6 +11,8 @@ spec:
     matchLabels:
       app: pay-backend
   replicas: 1
+  strategy:
+    type: Recreate  
   template:
     metadata:
       labels:
@@ -19,15 +21,16 @@ spec:
       containers:
         - name: pay-backend
           image: fernandoomarcelino/app:latest
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: lrv-env          
+                name: paybck-env          
           ports:
           - containerPort: 80
           resources:
             requests: 
-              cpu: "0.08"
+              cpu: "800m"
               memory: 100Mi
             limits:
-              cpu: "0.08"
-              memory: 100Mi        
+              cpu: "800m"
+              memory: 200Mi    

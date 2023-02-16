@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: lrv-mysql-env
+  name: pay-mysql-env
 data:
   MYSQL_ROOT_PASSWORD: laravel@123
   MYSQL_DATABASE: laravel
