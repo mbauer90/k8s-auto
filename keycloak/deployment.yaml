@@ -19,17 +19,13 @@ spec:
       containers:
       - name: keycloak
 #        image: quay.io/keycloak/keycloak:20.0.3
-#        image: quay.io/keycloak/keycloak:10.0.1
-#        image: bitnami/keycloak
         image: quay.io/keycloak/keycloak:legacy
-#        args: ["start"]
+#        Apenas na imagem  keycloak:20.0.3        
+#        args: ["start"] 
 #        args: ["start-dev"]
-#        args: ["build --db=mysql]
         envFrom:
           - configMapRef:
               name: keycloak-env
-#          - secretRef:
-#              name: keycloak-secret
         ports:
         - name: http
           containerPort: 8080
@@ -37,10 +33,10 @@ spec:
           httpGet:
             path: /auth/
             port: 8080          
-        resources:
-          requests: 
-            cpu: "500m"
-            memory: "512Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi" 
+#        resources:
+#          requests: 
+#            cpu: "500m"
+#            memory: "512Mi"
+#          limits:
+#            cpu: "500m"
+#            memory: "512Mi" 
