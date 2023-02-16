@@ -12,7 +12,7 @@ spec:
       app: pay-frontend
   replicas: 1
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
