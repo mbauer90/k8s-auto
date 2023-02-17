@@ -24,11 +24,11 @@ spec:
           name: key-mysql-svc
         resources:
           requests: 
-            cpu: "500m"
+            cpu: "100m"
             memory: "512Mi"
           limits:
-            cpu: "500m"
-            memory: "512Mi"          
+            cpu: "300m"
+            memory: "1024Mi"          
         volumeMounts:
         - name: key-mysql-persistent-storage
           mountPath: /var/lib/mysql
